@@ -1,0 +1,26 @@
+body{
+  background-color: rgb(50, 49, 56);
+}
+.text-color{
+  color: white;
+}
+.blue-button{
+  background-color: blue ;
+  border-radius: 7px;
+  padding: 6px;
+  border-color: transparent;
+  margin: 5px;
+}
+.input-bar{
+  background-color: rgb(255, 255, 255) ;
+  border-radius: 10px;
+  padding: 8px;
+  border-color: transparent;
+  width: 300px;
+}
+.password-g-container{
+  justify-self:center;
+}
+.range-class{
+  margin-top: 10px;
+}
