@@ -1,4 +1,4 @@
-import { useState,useCallback ,useEffect} from 'react';
+import { useState,useCallback ,useEffect,useRef} from 'react';
 import './App.css'
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   const [numberAllowed,setNumberAllowed]=useState(false)
   const [carAllowed,setCarAllowed]=useState(false)
   const [password,setPassword]=useState('')
-
+  const passwordRef=useRef(null)
   const generatePassword=useCallback(()=>{
     let pass=""
     let str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -18,18 +18,23 @@ function App() {
     }
 
     setPassword(pass)
-  },[numberAllowed,length,carAllowed])
+  },[numberAllowed,password,length,carAllowed])
 
   useEffect(()=>{
     generatePassword();
   },[numberAllowed,carAllowed,length])
 
+  const copyPasswordToClipboard=()=>{
+    window.navigator.clipboard.writeText(password);
+    passwordRef.current.select()
+  }
+
   return (
     <div className='password-g-container'>
       <h1 className='text-color'>Passored Generator</h1>
       <div>
-        <input type="text" className='input-bar' value={password} placeholder='Password' readOnly></input>
-        <button className='blue-button text-color'>Copy</button>
+        <input type="text" className='input-bar' value={password} placeholder='Password' readOnly ref={passwordRef}></input>
+        <button onClick={copyPasswordToClipboard} className='blue-button text-color'>Copy</button>
       </div>
 
       <div>
